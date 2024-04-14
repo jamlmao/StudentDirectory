@@ -44,7 +44,7 @@ if (isset($_POST["btnLogin"])) {
 </head>
 <body>
 <form action="index.php" method="POST">
-        <h2>LOGIN PAGE</h2>
+        <h2>TESTING LANG TO</h2>
         <?php if (!empty($errorMsg)) { ?>
             <p class="error-message"><?php echo $errorMsg; ?></p>
         <?php } ?>
