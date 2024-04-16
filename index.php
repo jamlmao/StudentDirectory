@@ -43,19 +43,29 @@ if (isset($_POST["btnLogin"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/indexstyle.css">
     <title>Login</title>
+
 </head>
 
- 
 
-        
-    <body>
+<style type="text/css">
+    body{
+    background-image: url(Style/Images/bgtest.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+</style>
 
-   
+
+
+<body>
 
       <div class="container">
 
+    
+
         <div>
-        <img src="Style/Images/logo.png" height="400px", width="400px" >
+        <img src="Style/Images/logoL.png" height="325px", width="330px">
         </div>
         
         <div class="box form-box">
@@ -88,7 +98,8 @@ if (isset($_POST["btnLogin"])) {
 
             
             ?>
-            <header>Login</header>
+            
+            <header>   LOGIN</header>
             <form action="" method="post">
                 <div class="field input">
                     <label for="email">Email</label>
