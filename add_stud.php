@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory Management</title>
-    <!-- Import Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Custom CSS */
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -31,14 +31,14 @@
         }
         .border-dark-subtle {
             border: 1px solid #ddd;
-            background-color: orange; /* Set background color to orange */
+            background-color: white; 
         }
         .p-3 {
             padding: 1rem;
         }
         .w-50 {
             width: 100%;
-            padding-right: 10px;
+            padding-right: 350px;
         }
         .form-label {
             font-weight: bold;
@@ -55,14 +55,14 @@
         }
         .btn-primary {
             background-color: black;
-            color: #fff;
+            color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 290px;
             border-radius: 4px;
             cursor: pointer;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: orange;
         }
         .text-right {
             text-align: right;
@@ -113,21 +113,43 @@
                     <input type="text" class="form-control" name="Course">
                 </div>
                 <div class="text-right w-100">
-                    <center><button type="submit" name="btnSave" class="btn btn-primary">Add</button></center>
+                <center><button type="submit" name="btnSave" class="btn btn-primary">Add</button></center>
+                <script>
+               
+                         Swal.fire({
+                            title: "Student info Added",
+                            showClass: {
+                                popup: `
+                                animate__animated
+                                animate__fadeInUp
+                                animate__faster
+                                `
+                            },
+                            hideClass: {
+                                popup: `
+                                animate__animated
+                                animate__fadeOutDown
+                                animate__faster
+                                `
+                            }
+                            });
+                        
+                </script>
                 </div>
+
             </form>
         </fieldset>
     </div>
 
-    <!-- JavaScript Section -->
+    
     <script>
-        // JavaScript functions for searching and loading items
+      
         function search(event){
-            // Implement search functionality
+         
         }
 
         function loadItems(){
-            // Implement item loading functionality
+            
         }
     </script>
 </body>
