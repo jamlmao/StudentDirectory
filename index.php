@@ -44,14 +44,20 @@ if (isset($_POST["btnLogin"])) {
     <link rel="stylesheet" href="Style/indexstyle.css">
     <title>Login</title>
 </head>
-<body>
-    
-    <div class="container">
-        <div class="box form-box">
-        <img src="Style/Images/logo.png">
-        </div>
+
+ 
+
+        
+    <body>
+
+   
 
       <div class="container">
+
+        <div>
+        <img src="Style/Images/logo.png" height="400px", width="400px" >
+        </div>
+        
         <div class="box form-box">
             
             <?php 
