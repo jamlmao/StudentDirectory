@@ -71,7 +71,7 @@
 </head>
 <body>
     <div class="container-fluid">
-        <h1>Add Student Infoooo</h1>
+        <h1>Add Student Info</h1>
         <fieldset class="border border-dark-subtle p-3">
             <form action="add_item.php" method="post" class="row">
                 <!-- Student Info Input Fields -->
@@ -154,4 +154,3 @@
     </script>
 </body>
 </html>
-cdn.jsdelivr.net
