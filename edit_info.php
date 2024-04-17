@@ -11,7 +11,7 @@
 
     <div class="container-fluid">
         <div class="col-10">
-            <h1>Edit Student Info</h1>
+            <h2>Edit Student Info</h2>
             <?php
             if(isset($_POST["btnSave"])){
                 require("dbconnect.php");
