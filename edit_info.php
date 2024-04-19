@@ -56,7 +56,21 @@
                     exit(); 
                 }
             }
+            if(isset($_GET["student_id"])) {
+                $studID = $_GET["student_id"];
+    
+                // Retrieve student data from the database
+                $sql = "SELECT * FROM tblstudentinfo WHERE StudentID = :student_id";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':student_id', $studID);
+                $stmt->execute();
+                $student = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+                if(!$student) {
+                    echo "Student not found!";
+                } else {
             ?>
+      
 
             <fieldset class="border border-2 border-dark-subtle p-3 ms-auto me-auto" style="width: 45rem;">
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="row">
@@ -149,6 +163,12 @@
                     </div>
                 </form>
             </fieldset>
+            <?php
+            }
+        } else {
+            echo "Student ID not provided!";
+        }
+        ?>
         </div>
     </div>
 
