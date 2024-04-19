@@ -76,7 +76,8 @@
             $student = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if(!$student) {
-            
+                echo "Student not found!";
+            } else {
         ?>
       
 
