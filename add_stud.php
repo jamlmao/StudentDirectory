@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Management</title>
+    <title>Student Directory</title>
     <!-- Import Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -24,18 +24,18 @@
                 $baddress = $_POST["boardingadd"];
                 $connum = $_POST["contact"];
                 $email = $_POST["email"];
+                $sx = $_POST["Sex"];
+                $crs = $_POST["Course"];
+                $year_level = $_POST["year_level"];
                 $civil_status = $_POST["civil_status"];
                 $religion = $_POST["religion"];
                 $mother_name = $_POST["mother_name"];
                 $father_name = $_POST["father_name"];
-                $sx = $_POST["Sex"];
-                $crs = $_POST["Course"];
-                $year_level = $_POST["year_level"];
                 
                 if(empty($studID) || empty($frstnm) || empty($lstnm) || empty($birthd) || empty($haddress) || empty($baddress) || empty($connum) || empty($email) || empty($civil_status) || empty($religion) || empty($mother_name) || empty($father_name) || empty($sx) || empty($crs) || empty($year_level)){
                     echo "Please input all fields.";
                 } else {
-                    $sql = "INSERT INTO `tblstudentinfo`(`StudentID`, `Fname`, `Lname`, `bdate`, `homeaddr`, `boardingaddr`, `contactno`, `email`, `civil_status`, `religion`, `mother_name`, `father_name`, `sex`, `course`, `year_level`) VALUES (:istudID, :ifrstnm, :ilstnm, :ibirthd, :ihaddress, :ibaddress, :iconnum, :iemail, :icivil_status, :ireligion, :imother_name, :ifather_name, :isx, :icrs, :iyear_level)";
+                    $sql = "INSERT INTO `tblstudentinfo`(`StudentID`, `Fname`, `Lname`, `bdate`, `homeaddr`, `boardingaddr`, `contact`, `email`, `civil_status`, `religion`, `mother_name`, `father_name`, `sex`, `course`, `year_level`) VALUES (:istudID, :ifrstnm, :ilstnm, :ibirthd, :ihaddress, :ibaddress, :iconnum, :iemail, :icivil_status, :ireligion, :imother_name, :ifather_name, :isx, :icrs, :iyear_level)";
                     $values = array(":istudID" => $studID, ":ifrstnm" => $frstnm, ":ilstnm" => $lstnm, ":ibirthd" => $birthd, ":ihaddress" => $haddress, ":ibaddress" => $baddress, ":iconnum" => $connum, ":iemail" => $email, ":icivil_status" => $civil_status, ":ireligion" => $religion, ":imother_name" => $mother_name, ":ifather_name" => $father_name, ":isx" => $sx, ":icrs" => $crs, ":iyear_level" => $year_level);
                     $result = $conn->prepare($sql);
                     $result->execute($values);
@@ -51,7 +51,7 @@
             ?>
 
             <fieldset class="border border-2 border-dark-subtle p-3 ms-auto me-auto" style="width: 45rem;">
-                <form action="add_item.php" method="post" class="row">
+                <form action="add_stud.php" method="post" class="row">
                     <div class="mb-3 w-50">
                         <label class="form-label mb-0">Student ID: </label>
                         <input type="text" name="Student_ID" class="form-control" pattern="[0-9]+" title="Please enter only numeric values">

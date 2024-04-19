@@ -34,15 +34,15 @@ CREATE TABLE `tblstudentinfo` (
   `bdate` date NOT NULL,
   `homeaddr` varchar(30) NOT NULL,
   `boardingaddr` varchar(30) NOT NULL,
-  `contact#` varchar(11) NOT NULL,
+  `contact` varchar(11) NOT NULL,
   `sex` enum('M','F') NOT NULL,
   `course` varchar(5) NOT NULL,
+  `year_level` int(2) NOT NULL
   `email` varchar(50) NOT NULL,
   `civil_status` varchar(10) NOT NULL,
   `religion` varchar(20) NOT NULL,
   `mother_name` varchar(50) NOT NULL,
-  `father_name` varchar(50) NOT NULL,
-  `year_level` int(2) NOT NULL
+  `father_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
