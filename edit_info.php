@@ -12,9 +12,6 @@
 <div class="container-fluid">
     <div class="col-10">
         <h1>Edit Student Information</h1>
-        <div class="container-fluid">
-        <div class="col-10">
-            <h1>Edit Student Information</h1>
             <?php
             require("dbconnect.php");
             session_start();
