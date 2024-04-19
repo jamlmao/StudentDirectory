@@ -54,20 +54,6 @@
                 exit(); 
             }
         }
-
-        if(isset($_GET["student_ID"])) {
-            $studID = $_GET["student_ID"];
-
-            // Retrieve student data from the database
-            $sql = "SELECT * FROM tblstudentinfo WHERE StudentID = :student_ID";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':student_ID', $studID);
-            $stmt->execute();
-            $student = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if(!$student) {
-                echo "Student not found!";
-            } else {
         ?>
       
 
@@ -162,12 +148,6 @@
                     </div>
                 </form>
             </fieldset>
-            <?php
-            }
-        } else {
-            echo "Student ID not provided!";
-        }
-        ?>
         </div>
     </div>
 
