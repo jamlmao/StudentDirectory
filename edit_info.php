@@ -55,13 +55,13 @@
             }
         }
 
-        if(isset($_GET["student_id"])) {
-            $studID = $_GET["student_id"];
+        if(isset($_GET["student_ID"])) {
+            $studID = $_GET["student_ID"];
 
             // Retrieve student data from the database
             $sql = "SELECT * FROM tblstudentinfo WHERE StudentID = :student_ID";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':student_id', $studID);
+            $stmt->bindParam(':student_ID', $studID);
             $stmt->execute();
             $student = $stmt->fetch(PDO::FETCH_ASSOC);
 
