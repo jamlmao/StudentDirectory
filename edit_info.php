@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <div class="col-10">
         <h1>Edit Student Information</h1>
-            <?php
+        <?php
             require("dbconnect.php");
             session_start();
 
@@ -28,12 +28,15 @@
                 $sx = $_POST["sex"];
                 $crs = $_POST["Course"];
                 $yearLevel = $_POST["year_level"];
+                $religion = $_POST["religion"];
+                $motherName = $_POST["mother_name"];
+                $fatherName = $_POST["father_name"];
                 
                 if(empty($frstnm) || empty($lstnm) || empty($birthd) || empty($haddress) || empty($baddress) || empty($connum) || empty($sx) || empty($crs)){
                     echo "Please input all required fields.";
                 } else {
                  
-                    $sql = "UPDATE `tblstudentinfo` SET `Fname` = :ifrstnm, `Lname` = :ilstnm, `bdate` = :ibirthd, `homeaddr` = :ihaddress, `boardingaddr` = :ibaddress, `contact` = :iconnum, `email` = :iemail, `sex` = :isx, `course` = :icrs, `year_level` = :iyearLevel WHERE `StudentID` = :istudID";
+                    $sql = "UPDATE `tblstudentinfo` SET `Fname` = :ifrstnm, `Lname` = :ilstnm, `bdate` = :ibirthd, `homeaddr` = :ihaddress, `boardingaddr` = :ibaddress, `contact` = :iconnum, `email` = :iemail, `sex` = :isx, `course` = :icrs, `year_level` = :iyearLevel, `religion` = :ireligion, `mother_name` = :imotherName, `father_name` = :ifatherName WHERE `StudentID` = :istudID";
                     $stmt = $conn->prepare($sql);
                     $stmt->bindParam(':istudID', $studID);
                     $stmt->bindParam(':ifrstnm', $frstnm);
@@ -46,6 +49,9 @@
                     $stmt->bindParam(':isx', $sx);
                     $stmt->bindParam(':icrs', $crs);
                     $stmt->bindParam(':iyearLevel', $yearLevel);
+                    $stmt->bindParam(':ireligion', $religion);
+                    $stmt->bindParam(':imotherName', $motherName);
+                    $stmt->bindParam(':ifatherName', $fatherName);
                     $stmt->execute();
 
                     if($stmt->rowCount() > 0){
@@ -54,7 +60,7 @@
                         echo "No record has been updated!";
                     }
             
-                    header("Location: mainpage.php?student_id=$studID");
+                    header("Location: studfile.php?student_id=$studID");
                     exit(); 
                 }
             }
