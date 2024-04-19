@@ -10,66 +10,65 @@
 <body>
 
 <div class="container-fluid">
-        <div class="col-10">
-            <h1>Edit Student Information</h1>
-            <?php
-            require("dbconnect.php");
-            session_start();
+    <div class="col-10">
+        <h1>Edit Student Information</h1>
+        <?php
+        require("dbconnect.php");
+        session_start();
 
-            if(isset($_POST["btnSave"])){
-                $studID = $_POST["Student_ID"];
-                $frstnm = $_POST["firstname"];
-                $lstnm = $_POST["lastname"];
-                $birthd = $_POST["birthdate"];
-                $haddress = $_POST["homeadd"];
-                $baddress = $_POST["boardingadd"];
-                $connum = $_POST["contact"];
-                $email = $_POST["email"];
-                $sx = $_POST["sex"];
-                $crs = $_POST["Course"];
+        if(isset($_POST["btnSave"])){
+            $studID = $_POST["Student_ID"];
+            $frstnm = $_POST["firstname"];
+            $lstnm = $_POST["lastname"];
+            $birthd = $_POST["birthdate"];
+            $haddress = $_POST["homeadd"];
+            $baddress = $_POST["boardingadd"];
+            $connum = $_POST["contact"];
+            $email = $_POST["email"];
+            $sx = $_POST["sex"];
+            $crs = $_POST["Course"];
 
-                
-                if(empty($frstnm) || empty($lstnm) || empty($birthd) || empty($haddress) || empty($baddress) || empty($connum) || empty($sx) || empty($crs)){
-                    echo "Please input all required fields.";
-                } else {
-                 
-                    $sql = "UPDATE `tblstudentinfo` SET `Fname` = :ifrstnm, `Lname` = :ilstnm, `bdate` = :ibirthd, `homeaddr` = :ihaddress, `boardingaddr` = :ibaddress, `contact` = :iconnum, `sex` = :isx, `course` = :icrs WHERE `StudentID` = :istudID";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(':istudID', $studID);
-                    $stmt->bindParam(':ifrstnm', $frstnm);
-                    $stmt->bindParam(':ilstnm', $lstnm);
-                    $stmt->bindParam(':ibirthd', $birthd);
-                    $stmt->bindParam(':ihaddress', $haddress);
-                    $stmt->bindParam(':ibaddress', $baddress);
-                    $stmt->bindParam(':iconnum', $connum);
-                    $stmt->bindParam(':isx', $sx);
-                    $stmt->bindParam(':icrs', $crs);
-                    $stmt->execute();
-
-                    if($stmt->rowCount() > 0){
-                        echo "Record has been updated!";
-                    } else {
-                        echo "No record has been updated!";
-                    }
-            
-                    header("Location: studfile.php?student_id=$studID");
-                    exit(); 
-                }
-            }
-            if(isset($_GET["student_id"])) {
-                $studID = $_GET["student_id"];
-    
-                // Retrieve student data from the database
-                $sql = "SELECT * FROM tblstudentinfo WHERE StudentID = :student_id";
+            if(empty($frstnm) || empty($lstnm) || empty($birthd) || empty($haddress) || empty($baddress) || empty($connum) || empty($sx) || empty($crs)){
+                echo "Please input all required fields.";
+            } else {
+                $sql = "UPDATE `tblstudentinfo` SET `Fname` = :ifrstnm, `Lname` = :ilstnm, `bdate` = :ibirthd, `homeaddr` = :ihaddress, `boardingaddr` = :ibaddress, `contact` = :iconnum, `sex` = :isx, `course` = :icrs WHERE `StudentID` = :istudID";
                 $stmt = $conn->prepare($sql);
-                $stmt->bindParam(':student_id', $studID);
+                $stmt->bindParam(':istudID', $studID);
+                $stmt->bindParam(':ifrstnm', $frstnm);
+                $stmt->bindParam(':ilstnm', $lstnm);
+                $stmt->bindParam(':ibirthd', $birthd);
+                $stmt->bindParam(':ihaddress', $haddress);
+                $stmt->bindParam(':ibaddress', $baddress);
+                $stmt->bindParam(':iconnum', $connum);
+                $stmt->bindParam(':isx', $sx);
+                $stmt->bindParam(':icrs', $crs);
                 $stmt->execute();
-                $student = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-                if(!$student) {
-                    echo "Student not found!";
+
+                if($stmt->rowCount() > 0){
+                    echo "Record has been updated!";
                 } else {
-            ?>
+                    echo "No record has been updated!";
+                }
+
+                header("Location: studfile.php?student_id=$studID");
+                exit(); 
+            }
+        }
+
+        if(isset($_GET["student_id"])) {
+            $studID = $_GET["student_id"];
+
+            // Retrieve student data from the database
+            $sql = "SELECT * FROM tblstudentinfo WHERE StudentID = :student_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':student_id', $studID);
+            $stmt->execute();
+            $student = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if(!$student) {
+                echo "Student not found!";
+            } else {
+        ?>
       
 
             <fieldset class="border border-2 border-dark-subtle p-3 ms-auto me-auto" style="width: 45rem;">
