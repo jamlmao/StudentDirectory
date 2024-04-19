@@ -94,78 +94,82 @@
                     </div>
 
                     <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Last Name: </label>
-                        <input type="text" class="form-control" name="lastname">
+                    <label class="form-label mb-0">Last Name: </label>
+                        <input type="text" class="form-control" name="lastname" value="<?php echo $student['Lname']; ?>">
                     </div>
 
                     <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Birth Date: </label>
-                        <input type="date" class="form-control" name="birthdate">
+                    <label class="form-label mb-0">Birth Date: </label>
+                        <input type="date" class="form-control" name="birthdate" value="<?php echo $student['bdate']; ?>">
                     </div>
 
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Home Address: </label>
-                        <input type="text" class="form-control" name="homeadd">
-                    </div>
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Home Address: </label>
+                    <input type="text" class="form-control" name="homeadd" value="<?php echo $student['homeaddr']; ?>">
+                </div>
+
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Boarding Address: </label>
+                    <input type="text" class="form-control" name="boardingadd" value="<?php echo $student['boardingaddr']; ?>">
+                </div>
+
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Contact No.: </label>
+                     <input type="tel" class="form-control" name="contact" value="<?php echo $student['contact']; ?>">
+                </div>
+
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Email Address: </label>
+                     <input type="email" class="form-control" name="email" value="<?php echo $student['email']; ?>">
+                </div>
+
+
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Civil Status: </label>
+                <select class="form-select" name="civil_status">
+                <option value=""></option>
+                    <option value="Single" <?php echo ($student['civil_status'] == 'Single') ? 'selected' : ''; ?>>Single</option>
+                    <option value="Married" <?php echo ($student['civil_status'] == 'Married') ? 'selected' : ''; ?>>Married</option>
+                    <option value="Divorced" <?php echo ($student['civil_status'] == 'Divorced') ? 'selected' : ''; ?>>Divorced</option>
+                    <option value="Widowed" <?php echo ($student['civil_status'] == 'Widowed') ? 'selected' : ''; ?>>Widowed</option>
+                </select>
+                </div>
+
+
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Religion: </label>
+                    <input type="text" class="form-control" name="religion" value="<?php echo $student['religion']; ?>">
+                </div>
+
 
                     <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Boarding Address: </label>
-                        <input type="text" class="form-control" name="boardingadd">
+                    <label class="form-label mb-0">Mother's Name: </label>
+                        <input type="text" class="form-control" name="mother_name" value="<?php echo $student['mother_name']; ?>">
                     </div>
 
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Contact No.: </label>
-                        <input type="tel" class="form-control" name="contact">
-                    </div>
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Father's Name: </label>
+                    <input type="text" class="form-control" name="father_name" value="<?php echo $student['father_name']; ?>">
+                </div>
 
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Email Address: </label>
-                        <input type="email" class="form-control" name="email">
-                    </div>
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Sex: </label>
+                <select class="form-select" name="sex">
+                <option value=""></option>
+                    <option value="M" <?php echo ($student['sex'] == 'M') ? 'selected' : ''; ?>>M</option>
+                    <option value="F" <?php echo ($student['sex'] == 'F') ? 'selected' : ''; ?>>F</option>
+                </select>
+                </div>
 
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Civil Status: </label>
-                        <select class="form-select" name="civil_status">
-                            <option value=""></option>
-                            <option value="Single">Single</option>
-                            <option value="Married">Married</option>
-                            <option value="Divorced">Divorced</option>
-                            <option value="Widowed">Widowed</option>
-                        </select>
-                    </div>
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Course: </label>
+                    <input type="text" class="form-control" name="Course" value="<?php echo $student['course']; ?>">
+                </div>
 
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Religion: </label>
-                        <input type="text" class="form-control" name="religion">
-                    </div>
-
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Mother's Name: </label>
-                        <input type="text" class="form-control" name="mother_name">
-                    </div>
-
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Father's Name: </label>
-                        <input type="text" class="form-control" name="father_name">
-                    </div>
-
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Sex: </label>
-                        <select class="form-select" name="sex">
-                            <option value=""></option>
-                            <option value="M">M</option>
-                            <option value="F">F</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Course: </label>
-                        <input type="text" class="form-control" name="Course">
-                    </div>
-
-                    <div class="mb-3 w-50">
-                        <label class="form-label mb-0">Year Level: </label>
-                        <input type="text" class="form-control" name="year_level">
+                <div class="mb-3 w-50">
+                <label class="form-label mb-0">Year Level: </label>
+                    <input type="text" class="form-control" name="year_level" value="<?php echo $student['year_level']; ?>">
+                </div>
 
                     <div style="text-align: right;">
                         <button type="submit" name="btnSave" class="btn btn-primary w-25">edit</button>
