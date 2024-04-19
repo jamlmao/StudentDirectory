@@ -19,8 +19,13 @@ if(isset($_GET["student_id"])){
         echo "<p>Home Address: " . $student['homeaddr'] . "</p>";
         echo "<p>Boarding Address: " . $student['boardingaddr'] . "</p>";
         echo "<p>Contact No.: " . $student['contactno'] . "</p>";
+        echo "<p>Email Address: " . $student['email'] . "</p>"; // New field
+        echo "<p>Civil Status: " . $student['civil_status'] . "</p>"; // New field
+        echo "<p>Religion: " . $student['religion'] . "</p>"; // New field
+        echo "<p>Parents' Name: <br> Mother: " . $student['mother_name'] . "<br> Father: " . $student['father_name'] . "</p>"; // New field
         echo "<p>Sex: " . ($student['sex'] == 'M' ? 'Male' : 'Female') . "</p>";
         echo "<p>Course: " . $student['course'] . "</p>";
+        echo "<p>Year Level: " . $student['year_level'] . "</p>"; // New field
     } else {
         echo "Student not found!";
     }

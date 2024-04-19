@@ -36,7 +36,13 @@ CREATE TABLE `tblstudentinfo` (
   `boardingaddr` varchar(30) NOT NULL,
   `contact#` varchar(11) NOT NULL,
   `sex` enum('M','F') NOT NULL,
-  `course` varchar(5) NOT NULL
+  `course` varchar(5) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `civil_status` varchar(10) NOT NULL,
+  `religion` varchar(20) NOT NULL,
+  `mother_name` varchar(50) NOT NULL,
+  `father_name` varchar(50) NOT NULL,
+  `year_level` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -95,3 +101,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
