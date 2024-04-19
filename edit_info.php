@@ -90,7 +90,7 @@
 
                     <div class="mb-3 w-50">
                         <label class="form-label mb-0">First Name: </label>
-                        <input type="text" class="form-control" name="firstname">
+                        <input type="text" class="form-control" name="firstname" name value="<?php echo $frstnm['firstname']; ?>">
                     </div>
 
                     <div class="mb-3 w-50">
