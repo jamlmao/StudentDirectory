@@ -60,7 +60,7 @@
                         echo "No record has been updated!";
                     }
             
-                    header("Location: studfile.php?student_id=$studID");
+                    header("Location: mainpage.php?student_id=$studID");
                     exit(); 
                 }
             }
