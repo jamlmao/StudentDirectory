@@ -54,7 +54,7 @@
                         echo "No record has been updated!";
                     }
             
-                    header("Location: studfile.php?student_id=$studID");
+                    header("Location: mainpage.php?student_id=$studID");
                     exit(); 
                 }
             }
@@ -62,7 +62,7 @@
         if(isset($_GET["student_id"])) {
             $studID = $_GET["student_id"];
 
-            // Retrieve student data from the database
+
             $sql = "SELECT * FROM tblstudentinfo WHERE StudentID = :student_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':student_id', $studID);
