@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Management</title>
+    <title>Student Document</title>
     <!-- Import Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -39,7 +39,7 @@
         } else {
             echo "No record has been updated!";
         }
-        header("Location: studfile.php?student_id=$studID");
+        
     }
 }
 ?>
@@ -48,7 +48,7 @@
                 <form action="add_item.php" method="post" class="row">
                     <div class="mb-3 w-50">
                         <label class="form-label mb-0">Student ID: </label>
-                        <input type="text" name="Student_ID" class="form-control" pattern="[0-9]+" title="Please enter only numeric values">
+                        <input type="text" class="form-control" name="Student_ID" readonly>
                     </div>
 
                     <div class="mb-3 w-50">

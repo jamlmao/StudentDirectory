@@ -24,7 +24,7 @@
                 $baddress = $_POST["boardingadd"];
                 $connum = $_POST["contact"];
                 $email = $_POST["email"];
-                $sx = $_POST["Sex"];
+                $sx = $_POST["sex"];
                 $crs = $_POST["Course"];
                 $year_level = $_POST["year_level"];
                 $civil_status = $_POST["civil_status"];
@@ -45,7 +45,7 @@
                     } else {
                         echo "No record has been saved!";
                     }
-                    header("Location: studfile.php?student_id=$studID");
+                   
                 }
             }
             ?>
@@ -120,7 +120,11 @@
 
                     <div class="mb-3 w-50">
                         <label class="form-label mb-0">Sex: </label>
-                        <input type="text" class="form-control" name="Sex">
+                        <select class="form-select" name="sex">
+                            <option value=""></option>
+                            <option value="M">M</option>
+                            <option value="F">F</option>
+                        </select>
                     </div>
 
                     <div class="mb-3 w-50">
