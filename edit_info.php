@@ -85,7 +85,7 @@
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="row">
                 <div class="mb-3 w-50">
                 <label class="form-label mb-0">Student ID: </label>
-                        <input type="text" class="form-control" name="Student_ID">
+                        <input type="text" class="form-control" name="Student_ID" readonly value="<?php echo $student['StudentID']; ?>">
                     </div>
 
                     <div class="mb-3 w-50">
