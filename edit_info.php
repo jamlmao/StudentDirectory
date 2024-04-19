@@ -175,7 +175,7 @@
             <?php
             }
         } else {
-            echo "!";
+            echo "";
         }
         ?>
         </div>
