@@ -59,7 +59,7 @@
             $studID = $_GET["student_id"];
 
             // Retrieve student data from the database
-            $sql = "SELECT * FROM tblstudentinfo WHERE StudentID = :student_id";
+            $sql = "SELECT * FROM tblstudentinfo WHERE StudentID = :student_ID";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':student_id', $studID);
             $stmt->execute();
