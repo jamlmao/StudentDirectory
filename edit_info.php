@@ -89,8 +89,8 @@
                     </div>
 
                     <div class="mb-3 w-50">
-                        <label class="form-label mb-0">First Name: </label>
-                        <input type="text" class="form-control" name="firstname" name value="<?php echo $frstnm['firstname']; ?>">
+                    <label class="form-label mb-0">First Name: </label>
+                        <input type="text" class="form-control" name="firstname" value="<?php echo $student['Fname']; ?>">
                     </div>
 
                     <div class="mb-3 w-50">
