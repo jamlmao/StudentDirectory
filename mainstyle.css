@@ -1,0 +1,160 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #ffe4cd;
+    border-bottom: 5px solid #fbab60;
+    border-top: 5px solid #fbab60;
+    
+    
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    width: 200px;
+  
+    background-color:#ffe4cd;
+    color: rgb(231, 26, 26);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #fbab60;
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 50%;
+    height: auto;
+    margin-left: 25px;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.search-bar input{
+    width: 59%; 
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    text-align: center;
+    
+    
+}
+
+.search-bar button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 10;
+    width: 40px;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    background-color:#fbab60;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-bar button i {
+    font-size: 16px;
+}
+.buttons {
+    display: flex;
+    
+   
+}
+
+.btn1 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #fbab60  ;
+    background-color: #fbab60;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    margin: 10px 0;
+    clip-path: polygon(100% 0, 91% 49%, 100% 100%, 0 100%, 0% 50%, 0 0);
+   
+    
+    
+}
+.btn2 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #fbab60 ;
+    background-color: #fbab60;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    margin:0;
+    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 9% 51%, 0 0);
+}
+
+  
+  
+
+.logout {
+    margin-top: auto; /* Push the logout button to the bottom */
+}
+
+.logout button {
+    width: 35%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    background-color: #fbab60;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.content{
+ text-align: center;
+ align-items: center;
+
+ 
+}
+h2{
+ text-align:left;
+}
+
+
+
+.content table button{
+    width: 50px;
+    padding: 5px;
+    border: none;
+    background-color:#fbab60;
+    color: white;
+  
+   text-align: center;
+   
+}
+tr,th {
+   border: none;
+   
+}
+.content table {
+    border: 2px solid #fbab60;
+    width: 100%;
+    margin-left: 8px;
+
+}
+thead{
+    background-color: #fbab60;
+}
+
