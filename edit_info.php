@@ -6,12 +6,14 @@
     <title>Student Directory</title>
     <!-- Import Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
-<body>
+<body class="bg">
 
 <div class="container-fluid">
     <div class="col-10">
-        <h1>Edit Student Information</h1>
+    <h1><img src="logoF.png" class="rounded float-start" height = "100px" width = "100px">Edit Student Information</h1>
         <?php
             require("dbconnect.php");
             session_start();
@@ -171,8 +173,8 @@
                     <input type="text" class="form-control" name="year_level" value="<?php echo $student['year_level']; ?>">
                 </div>
 
-                    <div style="text-align: right;">
-                        <button type="submit" name="btnSave" class="btn btn-primary w-25">edit</button>
+                    <div class="text-center" style="text-align: center;">
+                        <button type="button" name="btnSave" onclick="confirmUpdate()" id="updateForm" class="btn btn-primary w-25">Update</button>
                     </div>
                 </form>
             </fieldset>
@@ -183,8 +185,22 @@
         </div>
     </div>
 
-    <!-- JavaScript Section -->
     <script>
+        function confirmUpdate() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are about to update the student's information.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('updateForm').submit();
+            }
+        });
+    }
         function search(event){
             if(event.keyCode == 13){
                 let search = document.getElementById("txtSearch").value;
@@ -206,5 +222,77 @@
             xhttp.send();
         }
     </script>
+    <style>
+    .bg {
+            background-color: white;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: black;
+            background-color: #f5f5f5;
+            margin: 1;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10;
+        }
+        .container-fluid {
+            font-size: larger;
+            border-top-left-radius: 8px;
+            max-width: 50rem;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: orange;
+        }
+        h1 {
+            color: black;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .border-dark-subtle {
+            background-color: #f9ddb1; 
+        }
+        .p-3 {
+            padding: 1rem;
+        }
+        .w-50 {
+            width: 100%;
+            padding-right: 350px;
+        }
+        .form-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            font-size: large;
+            font-weight: bolder;
+            background-color: orange;
+            color: black;
+            border: none;
+            padding: 15px 290px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+
+            background-color: orange;
+        }
+        .text-right {
+            text-align: right;
+        }
+        img {
+            margin-right: 80px;
+        }
+    </style>
 </body>
 </html>
