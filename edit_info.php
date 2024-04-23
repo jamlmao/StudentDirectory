@@ -224,7 +224,7 @@
     </script>
     <style>
     .bg {
-            background-color: white;
+            background-color: #f5f5f5;
         }
         body {
             font-family: Arial, sans-serif;
