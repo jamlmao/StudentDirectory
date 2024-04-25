@@ -7,6 +7,7 @@
     <!-- Import Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body class="bg">
@@ -58,8 +59,10 @@
 
                     if($stmt->rowCount() > 0){
                         echo "Record has been updated!";
+                        
                     } else {
                         echo "No record has been updated!";
+                        
                     }
             
                     header("Location: mainpage.php?student_id=$studID");
@@ -84,7 +87,7 @@
       
 
             <fieldset class="border border-2 border-dark-subtle p-3 ms-auto me-auto" style="width: 45rem;">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="row">
+                <form action="edit_info.php" method="post" class="row" id="updateForm" onsubmit="return confirmUpdate()">
                 <div class="mb-3 w-50">
                 <label class="form-label mb-0">Student ID: </label>
                         <input type="text" class="form-control" name="Student_ID" readonly value="<?php echo $student['StudentID']; ?>">
@@ -92,17 +95,17 @@
 
                     <div class="mb-3 w-50">
                     <label class="form-label mb-0">First Name: </label>
-                        <input type="text" class="form-control" name="firstname" value="<?php echo $student['Fname']; ?>">
+                        <input type="text" class="form-control" name="firstname" readonly value="<?php echo $student['Fname']; ?>">
                     </div>
 
                     <div class="mb-3 w-50">
                     <label class="form-label mb-0">Last Name: </label>
-                        <input type="text" class="form-control" name="lastname" value="<?php echo $student['Lname']; ?>">
+                        <input type="text" class="form-control" name="lastname" readonly value="<?php echo $student['Lname']; ?>">
                     </div>
 
                     <div class="mb-3 w-50">
                     <label class="form-label mb-0">Birth Date: </label>
-                        <input type="date" class="form-control" name="birthdate" value="<?php echo $student['bdate']; ?>">
+                        <input type="date" class="form-control" name="birthdate" readonly value="<?php echo $student['bdate']; ?>">
                     </div>
 
                 <div class="mb-3 w-50">
@@ -140,24 +143,24 @@
 
                 <div class="mb-3 w-50">
                 <label class="form-label mb-0">Religion: </label>
-                    <input type="text" class="form-control" name="religion" value="<?php echo $student['religion']; ?>">
+                    <input type="text" class="form-control" name="religion" readonly value="<?php echo $student['religion']; ?>">
                 </div>
 
 
                     <div class="mb-3 w-50">
                     <label class="form-label mb-0">Mother's Name: </label>
-                        <input type="text" class="form-control" name="mother_name" value="<?php echo $student['mother_name']; ?>">
+                        <input type="text" class="form-control" name="mother_name" readonly value="<?php echo $student['mother_name']; ?>">
                     </div>
 
                 <div class="mb-3 w-50">
                 <label class="form-label mb-0">Father's Name: </label>
-                    <input type="text" class="form-control" name="father_name" value="<?php echo $student['father_name']; ?>">
+                    <input type="text" class="form-control" name="father_name" readonly value="<?php echo $student['father_name']; ?>">
                 </div>
 
                 <div class="mb-3 w-50">
                 <label class="form-label mb-0">Sex: </label>
                 <select class="form-select" name="sex">
-                <option value=""></option>
+                <option readonly value=""></option>
                     <option value="M" <?php echo ($student['sex'] == 'M') ? 'selected' : ''; ?>>M</option>
                     <option value="F" <?php echo ($student['sex'] == 'F') ? 'selected' : ''; ?>>F</option>
                 </select>
@@ -174,7 +177,7 @@
                 </div>
 
                     <div class="text-center" style="text-align: center;">
-                        <button type="button" name="btnSave" onclick="confirmUpdate()" id="updateForm" class="btn btn-primary w-25">Update</button>
+                        <button type="submit" name="btnSave" id="btnSave" class="btn btn-primary w-25">Save</button>
                     </div>
                 </form>
             </fieldset>
@@ -185,50 +188,15 @@
         </div>
     </div>
 
-    <script>
-        function confirmUpdate() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You are about to update the student's information.",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, update it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('updateForm').submit();
-            }
-        });
-    }
-        function search(event){
-            if(event.keyCode == 13){
-                let search = document.getElementById("txtSearch").value;
-                if(search.length >= 3 || search.length === 0){
-                    loadItems();
-                }
-            } 
-        }
-
-        function loadItems(){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("htmlContent").innerHTML = this.responseText;
-                }
-            };
-            let search = document.getElementById("txtSearch").value;	
-            xhttp.open("GET", "CancelSearch.php?search="+search, true);
-            xhttp.send();
-        }
-    </script>
+   
     <style>
-    .bg {
-            background-color: black;
+        
+        .bg {
+            background-color: #f5f5f5;
         }
         body {
             font-family: Arial, sans-serif;
-            color: white;
+            color: black;
             background-color: #f5f5f5;
             margin: 1;
             padding: 0;
@@ -251,7 +219,7 @@
             margin-bottom: 20px;
         }
         .border-dark-subtle {
-            background-color: black; 
+            background-color: #f9ddb1; 
         }
         .p-3 {
             padding: 1rem;
@@ -295,4 +263,43 @@
         }
     </style>
 </body>
+<script>
+function confirmUpdate(event) {
+    event.preventDefault(); // Prevent the default form submission
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, update it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('updateForm').submit(); // Submit the form manually
+        }
+    })
+}
+
+function search(event){
+    if(event.keyCode == 13){
+        let search = document.getElementById("txtSearch").value;
+        if(search.length >= 3 || search.length === 0){
+            loadItems();
+        }
+    } 
+}
+
+function loadItems(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("htmlContent").innerHTML = this.responseText;
+        }
+    };
+    let search = document.getElementById("txtSearch").value;	
+    xhttp.open("GET", "CancelSearch.php?search="+search, true);
+    xhttp.send();
+}
+</script>
 </html>

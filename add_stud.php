@@ -6,7 +6,7 @@
     <title>Student Directory</title>
     <!-- Import Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -106,7 +106,7 @@
                 $father_name = $_POST["father_name"];
                 
                 if(empty($studID) || empty($frstnm) || empty($lstnm) || empty($birthd) || empty($haddress) || empty($baddress) || empty($connum) || empty($email) || empty($civil_status) || empty($religion) || empty($mother_name) || empty($father_name) || empty($sx) || empty($crs) || empty($year_level)){
-                    echo "                      Please input all fields.";
+                    echo '  <h1 "style= color: red; font-weight:bold;">Please input all fields.</h1>' ;
                 } else {
                     $sql = "INSERT INTO `tblstudentinfo`(`StudentID`, `Fname`, `Lname`, `bdate`, `homeaddr`, `boardingaddr`, `contact`, `email`, `civil_status`, `religion`, `mother_name`, `father_name`, `sex`, `course`, `year_level`) VALUES (:istudID, :ifrstnm, :ilstnm, :ibirthd, :ihaddress, :ibaddress, :iconnum, :iemail, :icivil_status, :ireligion, :imother_name, :ifather_name, :isx, :icrs, :iyear_level)";
                     $values = array(":istudID" => $studID, ":ifrstnm" => $frstnm, ":ilstnm" => $lstnm, ":ibirthd" => $birthd, ":ihaddress" => $haddress, ":ibaddress" => $baddress, ":iconnum" => $connum, ":iemail" => $email, ":icivil_status" => $civil_status, ":ireligion" => $religion, ":imother_name" => $mother_name, ":ifather_name" => $father_name, ":isx" => $sx, ":icrs" => $crs, ":iyear_level" => $year_level);
@@ -118,13 +118,15 @@
                     } else {
                         echo "No record has been saved!";
                     }
+                    header("Location: mainpage.php");
+                    exit();
                    
                 }
             }
             ?>
 
             <fieldset class="border border-2 border-dark-subtle p-3">
-                <form action="add_stud.php" method="post" class="form-wrapper">
+                <form action="add_stud.php" method="post" class="form-wrapper" id="myForm" onsubmit="return validateForm()">
                     <div class="form-row">
                         <div class="mb-3">
                             <label class="form-label mb-0">Student ID: </label>
@@ -212,14 +214,39 @@
                         </div>
                     </div>
                     <div class="text-right">
-                        <button type="submit" name="btnSave" class="btn btn-primary">Add</button>
+                        <button type="submit" name="btnSave" class="btn btn-primary" onclick="showPopup()">Add</button>
                     </div>
                 </form>
             </fieldset>
         </div>
     </div>
 
-    <script>
+
+</body>
+<script>
+    function validateForm() {
+        var isValid = true;
+        $('#myForm input').each(function() {
+            if ($(this).val() === '')
+                isValid = false;
+        });
+        $('#myForm select').each(function() {
+            if ($(this).val() === '')
+                isValid = false;
+        });
+
+        if (!isValid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill all the fields or enter valid values!',
+            });
+        }
+
+        return isValid;
+    }
+
+    function showPopup() {
         Swal.fire({
             title: "Student info Added",
             showClass: {
@@ -237,7 +264,7 @@
                 `
             }
         });
-    </script>
+    }
+</script>
 
-</body>
 </html>
