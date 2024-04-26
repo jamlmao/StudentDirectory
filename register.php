@@ -123,7 +123,7 @@ if (isset($_POST["btnSave"])) {
         }
 
         .form1 {/*form2*/
-            width: 300px;
+            width: 330px;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
