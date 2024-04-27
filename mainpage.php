@@ -1,4 +1,22 @@
+<?php      
+        
+        session_start();
 
+            if (!isset($_SESSION["id"])) {
+                header("location:index.php");
+                exit();
+            }
+
+            require("dbconnect.php");
+
+            if(isset($_REQUEST["logout"])){
+                session_destroy();
+                header("location:index.php");
+                exit();
+            }
+
+            
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="mainstyle.css">
 </header>
 <body>
@@ -25,7 +43,7 @@
             </div>
             <button class="btn2">REGISTER</button>
             <div class="logout">
-                <button><i class="fas fa-sign-out-alt"></i></button>
+            <button onclick="location.href='MainPage.php?logout=<?php echo $_SESSION["id"]; ?>'"><i class="fas fa-sign-out-alt"></i></button> 
             </div>
         </div>
         <div class="content">
@@ -58,7 +76,7 @@ if($students){
         echo "<th>" . $student['course'] . "</th>";
         echo "<th>" . $student['year_level'] . "</th>";
         echo "<th>Mother: " . $student['mother_name'] . "<br> Father: " . $student['father_name'] . "</th>";
-        echo "<th><a href='edit_info.php?student_id=" . $student['StudentID'] . "'><button>Edit</button></a></th>";
+        echo "<th><a href='edit_info.php?student_id=" . $student['StudentID'] . "'><button><i class='fas fa-user-pen'></i></button></a></th>";
         echo "<th><a href='edit_info.php?student_id=" . $student['StudentID'] . "'><button>Delete</button></a>";
         echo "</tr>";
     }

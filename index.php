@@ -24,10 +24,12 @@ if (isset($_POST["btnLogin"])) {
                 exit();
             } 
         } else {
-            $errorMsg = "Invalid password!";
+            $showAlert = true;
+            $errorMsg = "Invalid username or password!";
         }
     } else {
-        $errorMsg = "Invalid username!";
+        $showAlert = true;
+        $errorMsg = "Invalid username or password!";
     }
 }
 
@@ -42,6 +44,8 @@ if (isset($_POST["btnLogin"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Style/indexstyle.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Login</title>
 
 </head>
@@ -99,4 +103,13 @@ if (isset($_POST["btnLogin"])) {
        
       </div>
 </body>
+<script>
+    <?php if ($showAlert) { ?>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '<?php echo $errorMsg; ?>',
+        });
+        <?php } ?>
+</script>
 </html>
