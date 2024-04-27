@@ -193,8 +193,7 @@ if (isset($_POST["btnSave"])) {
             border-radius: 5px;
             border: none;
             color: white;
-        }
-
+    
         p {
             font-family: arial, sans-serif;
         }
