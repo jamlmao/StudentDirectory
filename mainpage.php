@@ -90,11 +90,22 @@ if($students){
 
     </div>   
 </div>
-
-
-
     
 </body>
+
+<script>
+    function redirectTo(url) {
+        window.location.href = url;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector(".btn1").addEventListener("click", function() {
+            redirectTo('add_stud.php');
+        });
+
+    });
+</script>
+
 </html>
 
 
