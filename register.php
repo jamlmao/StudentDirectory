@@ -45,9 +45,12 @@ if (isset($_POST["btnSave"])) {
 
 </head>
 <body>
+<div class="background-image-container">
     <div class="container">
         <form action="register.php" method="POST">
-            <h2>Sign Up</h2>
+        <img src="image/isu.png" alt="Login Image" class="login-image">
+            <h2><Center>Sign Up</Center></h2>
+            
             <div class="line"></div>
             <?php if (!empty($errorMsg)) { ?>
                 <p class="error-message"><?php echo $errorMsg; ?></p>
@@ -59,10 +62,11 @@ if (isset($_POST["btnSave"])) {
             <label>Password:</label><br>
             <input type="password" name="passcode" required><br><br>
         
-            <button type="submit" name="btnSave">Sign Up</button>
+            <button class="btn1" type="submit" name="btnSave">Sign Up</button>
             <p>Have already account? <a href="#" id="loginLink" style="color: #fbab60;">Login here</a></p>
         </form>
     </div>
+</div>
     <div class="overlay" id="overlay"></div>
     <div class="login-popup" id="loginPopup">
         <form action="add_stud.php" method="POST" class="form1">
@@ -72,7 +76,7 @@ if (isset($_POST["btnSave"])) {
             <input type="text" name="username"><br><br>
             <label>Password:</label><br>
             <input type="password" name="passcode" required><br><br>
-            <button type="submit" name="btnLogin">Login</button>
+            <button class="btn2" type="submit" name="btnLogin">Login</button>
         </form>
     </div>
     
@@ -104,6 +108,10 @@ if (isset($_POST["btnSave"])) {
 <style>
         body {
             background-color: #ffe4cd;
+            background-image: url(image/loginbg.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .container {
@@ -120,6 +128,25 @@ if (isset($_POST["btnSave"])) {
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             border: 1px solid #ccc;
+        }
+
+        .background-image-container {
+            background-image: url('image/ccsict.png'); /* Replace 'path/to/background/image.jpg' with the actual path to your background image */
+            background-size: 650px;
+            background-repeat: no-repeat;
+            background-position-x: 400px;
+            height: 120vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-image {
+            display: block;
+            margin: 0 auto; /* Center the image horizontally */
+            margin-top: -10px;
+            margin-bottom: 30px; /* Adjust the top margin as needed */
+            width: 100px; /* Set the width of the image */
+            height: auto; /* Maintain aspect ratio */
         }
 
         .form1 {/*form2*/
@@ -150,7 +177,7 @@ if (isset($_POST["btnSave"])) {
             border: 2px solid #ccc;
         }
 
-        button {
+        .btn1 {
             background: #fbab60;
             width: 337px;
             height: 30px;
@@ -159,6 +186,14 @@ if (isset($_POST["btnSave"])) {
             color: white;
         }
 
+        .btn2 {
+            background: #fbab60;
+            width: 308px;
+            height: 30px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+    
         p {
             font-family: arial, sans-serif;
         }
