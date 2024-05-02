@@ -24,6 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="mainstyle.css">
 </header>
@@ -51,7 +52,7 @@
 require("dbconnect.php");
 
 // Retrieve all student info from the database
-$sql_select = "SELECT * FROM `tblstudentinfo`";
+$sql_select = "SELECT * FROM `tblstudentinfo` WHERE deleted = 1";
 $stmt = $conn->prepare($sql_select);
 $stmt->execute();
 $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -77,7 +78,7 @@ if($students){
         echo "<th>" . $student['year_level'] . "</th>";
         echo "<th>Mother: " . $student['mother_name'] . "<br> Father: " . $student['father_name'] . "</th>";
         echo "<th><a href='edit_info.php?student_id=" . $student['StudentID'] . "'><button><i class='fas fa-user-pen'></i></button></a></th>";
-        echo "<th><a href='edit_info.php?student_id=" . $student['StudentID'] . "'><button>Delete</button></a>";
+        echo "<th><button type='button' onclick='confirmDelete(" . $student['StudentID'] . ")'><i class='fa fa-trash'></i></button></th>";
         echo "</tr>";
     }
     echo "</table>";
@@ -94,6 +95,22 @@ if($students){
 </body>
 
 <script>
+
+function confirmDelete(StudentID) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'delete.php?StudentID=' + StudentID;
+        }
+    })
+}
     function redirectTo(url) {
         window.location.href = url;
     }
