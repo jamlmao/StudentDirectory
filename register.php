@@ -63,43 +63,10 @@ if (isset($_POST["btnSave"])) {
             <input type="password" name="passcode" required><br><br>
         
             <button class="btn1" type="submit" name="btnSave">Sign Up</button>
-            <p>Have already account? <a href="#" id="loginLink" style="color: #fbab60;">Login here</a></p>
+            <p>Have already account? <a href="index.php"  style="color: #fbab60;">Login here</a></p>
         </form>
     </div>
-</div>
-    <div class="overlay" id="overlay"></div>
-    <div class="login-popup" id="loginPopup">
-        <form action="add_stud.php" method="POST" class="form1">
-            <h2>Login</h2>
-            <div class="line"></div>
-            <label>Username:</label><br>
-            <input type="text" name="username"><br><br>
-            <label>Password:</label><br>
-            <input type="password" name="passcode" required><br><br>
-            <button class="btn2" type="submit" name="btnLogin">Login</button>
-        </form>
-    </div>
-    
-    <script>
-        // Get references to the login popup and overlay
-        const loginPopup = document.getElementById('loginPopup');
-        const overlay = document.getElementById('overlay');
 
-        // Function to toggle login popup
-        function toggleLoginPopup() {
-            loginPopup.style.display = loginPopup.style.display === 'block' ? 'none' : 'block';
-            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // Event listener for the login link
-        document.getElementById('loginLink').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            toggleLoginPopup();
-        });
-
-        // Event listener for the overlay (to close popup when clicking outside)
-        overlay.addEventListener('click', toggleLoginPopup);
-    </script>
 </body>
 </html>
 

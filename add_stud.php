@@ -84,6 +84,7 @@
 
     <div class="container-fluid">
         <div class="col-10">
+            
             <center><h1>Add Student Info</h1></center>
             <?php
             if(isset($_POST["btnSave"])){

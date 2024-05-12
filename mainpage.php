@@ -145,6 +145,13 @@ function confirmDelete(StudentID) {
         });
 
     });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector(".btn2").addEventListener("click", function() {
+            redirectTo('register.php');
+        });
+
+    });
 </script>
 
 </html>
