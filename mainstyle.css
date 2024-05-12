@@ -78,6 +78,10 @@ body, html {
 
 .search-bar button i {
     font-size: 16px;
+    background-color: #fbab60;
+    border: none;
+    padding: 5px 10px;
+    color: white;
 }
 .buttons {
     display: flex;
@@ -99,6 +103,9 @@ body, html {
     
     
 }
+
+
+
 .btn2 {
     width: 100%;
     padding: 10px;

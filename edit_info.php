@@ -95,17 +95,17 @@
 
                     <div class="mb-3 w-50">
                     <label class="form-label mb-0">First Name: </label>
-                        <input type="text" class="form-control" name="firstname" readonly value="<?php echo $student['Fname']; ?>">
+                        <input type="text" class="form-control" name="firstname" value="<?php echo $student['Fname']; ?>">
                     </div>
 
                     <div class="mb-3 w-50">
                     <label class="form-label mb-0">Last Name: </label>
-                        <input type="text" class="form-control" name="lastname" readonly value="<?php echo $student['Lname']; ?>">
+                        <input type="text" class="form-control" name="lastname"  value="<?php echo $student['Lname']; ?>">
                     </div>
 
                     <div class="mb-3 w-50">
                     <label class="form-label mb-0">Birth Date: </label>
-                        <input type="date" class="form-control" name="birthdate" readonly value="<?php echo $student['bdate']; ?>">
+                        <input type="date" class="form-control" name="birthdate"  value="<?php echo $student['bdate']; ?>">
                     </div>
 
                 <div class="mb-3 w-50">

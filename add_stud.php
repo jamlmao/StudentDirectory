@@ -105,10 +105,11 @@
                 $mother_name = $_POST["mother_name"];
                 $father_name = $_POST["father_name"];
                 
+                
                 if(empty($studID) || empty($frstnm) || empty($lstnm) || empty($birthd) || empty($haddress) || empty($baddress) || empty($connum) || empty($email) || empty($civil_status) || empty($religion) || empty($mother_name) || empty($father_name) || empty($sx) || empty($crs) || empty($year_level)){
                     echo '  <h1 "style= color: red; font-weight:bold;">Please input all fields.</h1>' ;
                 } else {
-                    $sql = "INSERT INTO `tblstudentinfo`(`StudentID`, `Fname`, `Lname`, `bdate`, `homeaddr`, `boardingaddr`, `contact`, `email`, `civil_status`, `religion`, `mother_name`, `father_name`, `sex`, `course`, `year_level`) VALUES (:istudID, :ifrstnm, :ilstnm, :ibirthd, :ihaddress, :ibaddress, :iconnum, :iemail, :icivil_status, :ireligion, :imother_name, :ifather_name, :isx, :icrs, :iyear_level)";
+                    $sql = "INSERT INTO `tblstudentinfo`(`StudentID`, `Fname`, `Lname`, `bdate`, `homeaddr`, `boardingaddr`, `contact`, `email`, `civil_status`, `religion`, `mother_name`, `father_name`, `sex`, `course`, `year_level`,`deleted`) VALUES (:istudID, :ifrstnm, :ilstnm, :ibirthd, :ihaddress, :ibaddress, :iconnum, :iemail, :icivil_status, :ireligion, :imother_name, :ifather_name, :isx, :icrs, :iyear_level, 1)";
                     $values = array(":istudID" => $studID, ":ifrstnm" => $frstnm, ":ilstnm" => $lstnm, ":ibirthd" => $birthd, ":ihaddress" => $haddress, ":ibaddress" => $baddress, ":iconnum" => $connum, ":iemail" => $email, ":icivil_status" => $civil_status, ":ireligion" => $religion, ":imother_name" => $mother_name, ":ifather_name" => $father_name, ":isx" => $sx, ":icrs" => $crs, ":iyear_level" => $year_level);
                     $result = $conn->prepare($sql);
                     $result->execute($values);
