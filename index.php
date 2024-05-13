@@ -49,14 +49,12 @@ if (isset($_POST["btnLogin"])) {
 
 <style type="text/css">
     body{
-    background-image: url(Style/Images/bgtest.jpg);
+    background-image: url(Style/Images/bg.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 </style>
-
-
 
 <body>
 
