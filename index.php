@@ -1,40 +1,43 @@
 <?php
 session_start();
 
-
 if (isset($_POST["btnLogin"])) {
     require("dbconnect.php");
-    $username = isset($_POST["username"]) ? $_POST["username"] : '';
-    $password = isset($_POST["passcode"]) ? $_POST["passcode"] : '';
+    $username = isset($_POST["username"])? $_POST["username"] : '';
+    $password = isset($_POST["passcode"])? $_POST["passcode"] : '';
 
-    $sql = "SELECT * FROM tbluser WHERE username = :username";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindValue(":username", $username);
-    $stmt->execute();
-    $user = $stmt->fetch();
+    // Adjusted regex pattern for strong password
+    $pattern = '/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,12}$/';
 
-    if ($user) {
-       
-        if (password_verify($password, $user['passcode'])) {
-           
-            if ($user['accounttype'] == 'Admin') {
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['username'] = $username;
-                header("Location:MainPage.php");
-                exit();
-            } 
+    // Check if password meets the criteria
+    if (!preg_match($pattern, $password)) {
+        $showAlert = true;
+        $errorMsg = "Password must be between 8 and 12 characters long, include at least one uppercase letter, one special character, and one number.";
+    } else {
+        $sql = "SELECT * FROM tbluser WHERE username = :username";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(":username", $username);
+        $stmt->execute();
+        $user = $stmt->fetch();
+
+        if ($user) {
+            if (password_verify($password, $user['passcode'])) {
+                if ($user['accounttype'] == 'Admin') {
+                    $_SESSION['id'] = $user['id'];
+                    $_SESSION['username'] = $username;
+                    header("Location:MainPage.php");
+                    exit();
+                } 
+            } else {
+                $showAlert = true;
+                $errorMsg = "Invalid username or password!";
+            }
         } else {
             $showAlert = true;
             $errorMsg = "Invalid username or password!";
         }
-    } else {
-        $showAlert = true;
-        $errorMsg = "Invalid username or password!";
     }
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +56,7 @@ if (isset($_POST["btnLogin"])) {
 
 <style type="text/css">
     body{
-    background-image: url(Style/Images/bgtest.jpg);
+    background-image: url(Style/Images/bg.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -90,14 +93,23 @@ if (isset($_POST["btnLogin"])) {
                     <label for="password">Password</label>
                     <input type="password" name="passcode" id="password" autocomplete="off" required>
                 </div>
-
+                <input type="checkbox" onclick="showPassword()"> Show Password
                 <div class="field">
                     
                     <button type="submit" class="btn" name="btnLogin" >Login</button>
                 </div>
             </form>
         </div>
-       
+        <script>
+        function showPassword() {
+            var passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
       </div>
 </body>
 <script>
@@ -108,5 +120,6 @@ if (isset($_POST["btnLogin"])) {
             text: '<?php echo $errorMsg; ?>',
         });
         <?php } ?>
+        
 </script>
 </html>

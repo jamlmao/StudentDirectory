@@ -1,38 +1,48 @@
 <?php
 
-$errorMsg = "";
 
-if (isset($_POST["btnSave"])) {
-    require("dbconnect.php");
-    $username = $_POST["username"];
-    $passcode = password_hash($_POST["passcode"], PASSWORD_BCRYPT);
+ $pattern = '/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,12}$/'; // Regex pattern for password validation
 
-   if (empty($username)) {
-        $errorMsg = "Please enter a valid username!";
-    } else if (empty($passcode)) {
-        $errorMsg = "Please enter a valid passcode!";
-    } else {
+ if (isset($_POST["btnSave"])) {
+     require("dbconnect.php");
+     $username = $_POST["username"];
+     $passcode = $_POST["passcode"]; // Get the password before validation
 
-        $sql = "INSERT INTO tbluser (username,passcode,accounttype) VALUES (:username, :passcode,:accounttype)";
-        $values = array(
-            
-            ":username" => $username,
-            ":passcode" => $passcode,
-            ":accounttype" => "Admin"
-        );
+     // Validate the password
+     if (!preg_match($pattern, $passcode)) {
+        $showAlert = true;
+        $errorMsg = "Password must contain at least one uppercase letter, one number, one special character, and be between 8 to 12 characters long.";
+     } else {
+         $passcode = password_hash($passcode, PASSWORD_BCRYPT); // Hash the password if it passes validation
+     }
 
-        $result = $conn->prepare($sql);
-        $result->execute($values);
+     if (empty($username)) {
+         $showAlert = true;
+         $errorMsg = "Please enter a valid username!";
+     } else if (!empty($errorMsg)) {
+         $showAlert = true;
+         $errorMsg = "Password must contain at least one uppercase letter, one number, one special character, and be between 8 to 12 characters long";
+         
+     } else {
+         $sql = "INSERT INTO tbluser (username, passcode, accounttype) VALUES (:username, :passcode, :accounttype)";
+         $values = array(
+             ":username" => $username,
+             ":passcode" => $passcode,
+             ":accounttype" => "Admin"
+         );
 
-        if ($result->rowCount() > 0) {
-            echo "Record has been saved!";
-            header("Location: index.php");
-            exit();
-        } else {
-            echo "No record has been saved!";
-        }
-    }
-}
+         $result = $conn->prepare($sql);
+         $result->execute($values);
+
+         if ($result->rowCount() > 0) {
+             echo "Record has been saved!";
+             header("Location: index.php");
+             exit();
+         } else {
+             echo "No record has been saved!";
+         }
+     }
+ }
 
 ?>
 
@@ -42,6 +52,8 @@ if (isset($_POST["btnSave"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -52,22 +64,48 @@ if (isset($_POST["btnSave"])) {
             <h2><Center>Sign Up</Center></h2>
             
             <div class="line"></div>
-            <?php if (!empty($errorMsg)) { ?>
-                <p class="error-message"><?php echo $errorMsg; ?></p>
-            <?php } ?>
+            
         
             <label>Username:</label><br>
             <input type="text" name="username"><br><br>
         
             <label>Password:</label><br>
-            <input type="password" name="passcode" required><br><br>
+            <input type="password" name="passcode" id="passcode" required><br><br>
+            <input type="checkbox" id="showPassword"> Show Password
         
             <button class="btn1" type="submit" name="btnSave">Sign Up</button>
             <p>Have already account? <a href="index.php"  style="color: #fbab60;">Login here</a></p>
         </form>
     </div>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('showPassword').addEventListener('change', function() {
+                var passwordField = document.getElementById('passcode');
+                if (passwordField) { // Check if the password field exists
+                    if (this.checked) {
+                        passwordField.type = 'text';
+                    } else {
+                        passwordField.type = 'password';
+                    }
+                } else {
+                    console.error('Password field not found');
+                }
+            });
+        });
+</script>
 </body>
+
+<script>
+    <?php if ($showAlert) { ?>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '<?php echo $errorMsg; ?>',
+        });
+        <?php } ?>
+        
+</script>
+
 </html>
 
 
@@ -75,7 +113,7 @@ if (isset($_POST["btnSave"])) {
 <style>
         body {
             background-color: #ffe4cd;
-            background-image: url(image/loginbg.jpg);
+            background-image: url(Style/Images/bg.jpg);
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -192,3 +230,5 @@ if (isset($_POST["btnSave"])) {
             z-index: 998;
         }
     </style>
+
+    
